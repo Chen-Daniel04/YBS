@@ -7,12 +7,12 @@ const BusSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
-        index: true
+        index: true,
     },
     route: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Route',
-        required: true
+        ref: "Route",
+        required: true,
     },
     currentPassengerCount: {
         type: Number,
@@ -22,35 +22,35 @@ const BusSchema = new mongoose.Schema({
     inferredLocation: {
         type: {
             type: String,
-            enum: ['Point'],
-            default: 'Point',
-            required: true
+            enum: ["Point"],
+            default: "Point",
+            required: true,
         },
         coordinates: {
             type: [Number],
             required: true,
-            index: '2dsphere'
-        }
+            index: "2dsphere",
+        },
     },
     inferredCurrentStop: {
         type: mongoose.Schema.Types.ObjectId,
-        default: null
+        default: null,
     },
     inferredNextStop: {
         type: mongoose.Schema.Types.ObjectId,
-        default: null
+        default: null,
     },
     lastUpdateTime: {
         type: Date,
         required: true,
-        default: Date.now
+        default: Date.now,
     },
     lastReportedGpsAt: {
         type: Date,
-        default: null
-    }
+        default: null,
+    },
 }, {
-    timestamps: true
+    timestamps: true,
 });
-const Bus = mongoose.model('Bus', BusSchema);
+const Bus = mongoose.model("Bus", BusSchema);
 exports.default = Bus;
