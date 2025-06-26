@@ -45,21 +45,9 @@ const startServer = async () => {
         process.exit(1);
     });
 
-    // Handle graceful shutdown
-    process.on('SIGTERM', () => {
-        console.log(chalk.yellow('SIGTERM received, shutting down gracefully'));
-        server.close(() => {
-            console.log(chalk.green('✓ Server closed'));
-            process.exit(0);
-        });
-    });
-
-    process.on('SIGINT', () => {
-        console.log(chalk.yellow('SIGINT received, shutting down gracefully'));
-        server.close(() => {
-            console.log(chalk.green('✓ Server closed'));
-            process.exit(0);
-        });
+    // Handle server close
+    server.on('close', () => {
+        console.log(chalk.green('✓ Server closed'));
     });
 
   } catch (error) {
