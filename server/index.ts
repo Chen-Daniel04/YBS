@@ -2,6 +2,8 @@ import express from 'express';
 import chalk from 'chalk';
 import connectDB from './db/conn';
 import adminAuthRoutes from './routes/adminAuthRoutes';
+import routeRoutes from './routes/routeRoutes';
+import busRoutes from './routes/busRoutes';
 
 const dotenv = require("dotenv");
 
@@ -28,6 +30,12 @@ const startServer = async () => {
 
     // Admin Authentication Routes
     app.use('/api/admin', adminAuthRoutes);
+
+    // Route Management Routes
+    app.use('/api/routes', routeRoutes);
+
+    // Bus Management Routes
+    app.use('/api/buses', busRoutes);
 
     // Start server
     const server = app.listen(port, () => {
